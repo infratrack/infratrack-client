@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
+import {
+  Baloo2_400Regular,
+  Baloo2_700Bold,
+  useFonts,
+} from "@expo-google-fonts/baloo-2";
+
+import Routes from "./src/routes";
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Baloo2_400Regular,
+    Baloo2_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <NavigationContainer>
+        <Routes />
+      </NavigationContainer>
+
+      <StatusBar style="inverted" />
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
