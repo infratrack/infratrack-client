@@ -1,4 +1,4 @@
 export default {
-  heading: "Baloo2_700Bold",
-  text: "Baloo2_400Regular",
+  bold: "Baloo2_700Bold",
+  regular: "Baloo2_400Regular",
 };
