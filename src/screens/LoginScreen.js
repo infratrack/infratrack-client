@@ -14,7 +14,7 @@ import { TextInput } from "react-native-gesture-handler";
 
 import colors from "../styles/colors";
 
-export default function LoginPage() {
+export default function LoginScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
