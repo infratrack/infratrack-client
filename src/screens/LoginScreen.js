@@ -17,7 +17,7 @@ import fonts from "../styles/fonts";
 
 export default function LoginScreen({navigation}) {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.container}
@@ -51,8 +51,8 @@ export default function LoginScreen({navigation}) {
 
         <Text style={styles.forgotPasswordText}>esqueci a senha</Text>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-          <Text>Entrar</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')} style={styles.enterButton}>
+          <Text style={styles.enterButtonText}>Entrar</Text>
         </TouchableOpacity>
 
         <View style={styles.continueWithContainer}>
@@ -83,7 +83,7 @@ export default function LoginScreen({navigation}) {
           <Text style={styles.signUpText}>cadastre-se</Text>
         </View>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.background,
     flex: 1,
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     width: "100%",
   },
 
