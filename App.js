@@ -7,6 +7,7 @@ import {
 } from "@expo-google-fonts/baloo-2";
 
 import Routes from "./src/routes";
+import colors from "./src/styles/colors";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -20,7 +21,7 @@ export default function App() {
 
   return (
     <>
-      <NavigationContainer>
+      <NavigationContainer theme={{colors:{background: colors.background, }}}>
         <Routes />
       </NavigationContainer>
 

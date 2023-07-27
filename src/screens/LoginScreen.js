@@ -14,7 +14,7 @@ import { TextInput } from "react-native-gesture-handler";
 
 import colors from "../styles/colors";
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
@@ -36,7 +36,7 @@ export default function LoginScreen() {
 
         <Text style={styles.forgotPasswordText}>esqueci a senha</Text>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
           <Text>Entrar</Text>
         </TouchableOpacity>
 

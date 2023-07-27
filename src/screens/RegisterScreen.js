@@ -2,8 +2,6 @@ import React from "react";
 import {
   Dimensions,
   Image,
-  KeyboardAvoidingView,
-  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -15,7 +13,7 @@ import { TextInput } from "react-native-gesture-handler";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
-export default function RegisterScreen() {
+export default function RegisterScreen({navigation}) {
   return (
     <View style={styles.container}>
         <View style={styles.header}>
@@ -47,7 +45,7 @@ export default function RegisterScreen() {
         <View style={styles.haveAccountView}>
           <Text style={styles.haveAccountText}>já possui uma conta? 
           </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                  <Text style={styles.loginText}> Fazer login</Text>
             </TouchableOpacity>
         </View>
