@@ -25,7 +25,7 @@ export default function App() {
         <Routes />
       </NavigationContainer>
 
-      <StatusBar style="inverted" />
+      <StatusBar style="light" />
     </>
   );
 }

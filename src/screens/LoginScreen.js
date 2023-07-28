@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   Dimensions,
   Image,
@@ -11,11 +11,18 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextInput } from "react-native-gesture-handler";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
+import { handleLogin } from "./handleLogin";
+import { authContext } from "../utils/Context";
 
 export default function LoginScreen({navigation}) {
+  const [email, onChangeEmail] = useState('');
+  const [password, onChangePassword] = useState('');
+
+
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -39,19 +46,23 @@ export default function LoginScreen({navigation}) {
             placeholderTextColor={colors.input}
             style={styles.input}
             autoComplete="email"
-          />
+            value={email}
+            onChangeText={onChangeEmail}
+            />
 
           <TextInput
             placeholder="senha"
             placeholderTextColor={colors.input}
             style={styles.input}
             secureTextEntry
-          />
+            value={password}
+            onChangeText={onChangePassword}
+            />
         </View>
 
         <Text style={styles.forgotPasswordText}>esqueci a senha</Text>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Register')} style={styles.enterButton}>
+        <TouchableOpacity onPress={() => handleLogin(email, password)} style={styles.enterButton}>
           <Text style={styles.enterButtonText}>Entrar</Text>
         </TouchableOpacity>
 
@@ -69,7 +80,7 @@ export default function LoginScreen({navigation}) {
           />
         </View>
 
-        <TouchableOpacity style={styles.googleButton}>
+        <TouchableOpacity style={styles.googleButton} onPress={async () => alert(await AsyncStorage.getItem('token'))} >
           <Image
             resizeMode="contain"
             source={require("../../assets/google.png")}
@@ -92,7 +103,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.background,
     flex: 1,
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     width: "100%",
   },
 
