@@ -21,7 +21,9 @@ export default function App() {
 
   return (
     <>
-      <NavigationContainer theme={{colors:{background: colors.background, }}}>
+      <NavigationContainer
+        theme={{ colors: { background: colors.background } }}
+      >
         <Routes />
       </NavigationContainer>
 
