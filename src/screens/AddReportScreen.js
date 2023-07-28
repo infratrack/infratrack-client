@@ -13,31 +13,36 @@ import { TextInput } from "react-native-gesture-handler";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
-export default function AddReportScreen({navigation}) {
+export default function AddReportScreen({ navigation }) {
   return (
     <View style={styles.container}>
-        <View style={styles.header}>
-            <Text style={styles.Title}>Adicionar Report</Text>
-            
-        </View>
+      <View style={styles.header}>
+        <Text style={styles.Title}>Adicionar Report</Text>
+      </View>
 
-        <View style={styles.forms}>
-            <TextInput placeholder="Título do report" style={styles.input}></TextInput>
-            <TextInput placeholder="Título do report" style={styles.input}></TextInput>
-            <TextInput multiline={true} numberOfLines = {5} placeholder="Descrição do Report" style={styles.descriptionInput}></TextInput>
-        </View>
+      <View style={styles.forms}>
+        <TextInput
+          placeholder="Título do report"
+          style={styles.input}
+        ></TextInput>
+        <TextInput
+          placeholder="Título do report"
+          style={styles.input}
+        ></TextInput>
+        <TextInput
+          multiline={true}
+          numberOfLines={5}
+          placeholder="Descrição do Report"
+          style={styles.descriptionInput}
+        ></TextInput>
+      </View>
 
-        <View style={styles.evidenceLocation}>
-            <Text style={styles.Text}>Adicione uma evidência</Text>
+      <View style={styles.evidenceLocation}>
+        <Text style={styles.Text}>Adicione uma evidência</Text>
+      </View>
 
-        </View>
-
-        <View style={styles.buttonView}>
-
-        </View>
+      <View style={styles.buttonView}></View>
     </View>
-
-
   );
 }
 
@@ -50,81 +55,81 @@ const styles = StyleSheet.create({
     width: "100%",
     fontFamily: fonts.bold,
   },
-  header:{
+  header: {
     display: "flex",
     // paddingTop: 20,
-    justifyContent: 'space-evenly',
+    justifyContent: "space-evenly",
     flex: 1.6,
     paddingTop: 20,
     // backgroundColor: 'blue'
-},
-  forms:{
+  },
+  forms: {
     display: "flex",
     flex: 2.75,
-    width: '75%',
+    width: "75%",
     gap: 20,
     // justifyContent: 'center',
     // backgroundColor: 'red'
-  },  
+  },
 
-image: {
+  image: {
     height: Dimensions.get("window").width * 0.3,
     marginTop: 10,
-},
+  },
 
-Title: {
+  Title: {
     color: colors.white,
     fontSize: 35,
     textAlign: "center",
     fontFamily: fonts.bold,
-},
-Text: {
+  },
+  Text: {
     color: colors.white,
-},
-input: {
+  },
+  input: {
     backgroundColor: colors.white,
     borderRadius: 20,
     color: colors.background,
     fontFamily: fonts.bold,
     fontSize: 15,
     textAlign: "left",
-    height:50,
+    height: 50,
     paddingLeft: 17,
-},
+  },
 
-descriptionInput:{
+  descriptionInput: {
     backgroundColor: colors.white,
     borderRadius: 20,
     color: colors.background,
     fontFamily: fonts.bold,
     fontSize: 15,
     textAlign: "left",
-    height:150,
+    height: 150,
     paddingLeft: 17,
     paddingTop: 17,
-    textAlignVertical: 'top'
-},
+    textAlignVertical: "top",
+  },
 
-button:{
+  button: {
     marginTop: 30,
     backgroundColor: colors.button,
     borderRadius: 20,
     height: 50,
-    display: 'flex',
+    display: "flex",
     justifyContent: "center",
-},
+  },
 
-buttonText:{
-  color: colors.background,
-  fontFamily: fonts.bold,
-  fontSize: 25,
+  buttonText: {
+    color: colors.background,
+    fontFamily: fonts.bold,
+    fontSize: 25,
 
-  textAlign: 'center',
-},
-evidenceLocation:{
+    textAlign: "center",
+  },
+  evidenceLocation: {
     flex: 1,
-},
-buttonView:{
+  },
+  buttonView: {
     flex: 1,
-},
+  },
 });
