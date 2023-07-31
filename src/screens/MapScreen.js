@@ -99,6 +99,7 @@ export default function MapScreen({ navigation }) {
         <TouchableOpacity
           style={styles.addReportButton}
           onPress={() => navigation.navigate("AddReport")}
+          disabled={!menuActive}
         >
           <Icon name="plus" size={25} color={colors.white} />
           <Text style={styles.addReportText}>Adicionar report</Text>
@@ -110,7 +111,7 @@ export default function MapScreen({ navigation }) {
           style={styles.lineImage}
         />
 
-        <TouchableOpacity style={styles.myProfileButton}>
+        <TouchableOpacity style={styles.myProfileButton} disabled={!menuActive}>
           <Icon name="user" size={25} color={colors.white} solid />
           <Text style={styles.myProfileText}>Meu perfil</Text>
         </TouchableOpacity>
