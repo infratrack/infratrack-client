@@ -16,7 +16,6 @@ import {API_URL} from "@env"
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
-
 async function handleCreateUser(name, email, password, navigation) {
   console.log('Trying to create user')
   await axios.post(`${API_URL}/user/create`, {
@@ -68,15 +67,13 @@ export default function RegisterScreen({navigation}) {
                 <Text style={styles.buttonText}>Cadastrar</Text>
             </TouchableOpacity>
 
-
         <View style={styles.haveAccountView}>
-          <Text style={styles.haveAccountText}>já possui uma conta? 
-          </Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                 <Text style={styles.loginText}> Fazer login</Text>
-            </TouchableOpacity>
+          <Text style={styles.haveAccountText}>já possui uma conta?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <Text style={styles.loginText}> Fazer login</Text>
+          </TouchableOpacity>
         </View>
-        </SafeAreaView>
+      </SafeAreaView>
     </View>
   );
 }
@@ -90,80 +87,80 @@ const styles = StyleSheet.create({
     width: "100%",
     fontFamily: fonts.bold,
   },
-  header:{
+  header: {
     display: "flex",
     // paddingTop: 20,
-    justifyContent: 'space-evenly',
+    justifyContent: "space-evenly",
     flex: 1.6,
     paddingTop: 20,
     // backgroundColor: 'blue'
-},
-  forms:{
+  },
+  forms: {
     display: "flex",
     flex: 2.75,
-    width: '75%',
+    width: "75%",
     gap: 20,
     // justifyContent: 'center',
     // backgroundColor: 'red'
-  },  
+  },
 
-image: {
+  image: {
     height: Dimensions.get("window").width * 0.3,
     marginTop: 10,
-},
+  },
 
-newAccountText: {
+  newAccountText: {
     color: colors.white,
     fontSize: 35,
     textAlign: "center",
     fontFamily: fonts.bold,
-},
+  },
 
-input: {
+  input: {
     backgroundColor: colors.white,
     borderRadius: 20,
-    color: '#000',
+    color: "#000",
     fontFamily: fonts.bold,
     fontSize: 15,
     textAlign: "left",
-    height:50,
+    height: 50,
     paddingLeft: 17,
-},
+  },
 
-button:{
+  button: {
     marginTop: 30,
     backgroundColor: colors.button,
     borderRadius: 20,
     height: 50,
-    display: 'flex',
+    display: "flex",
     justifyContent: "center",
-},
+  },
 
-buttonText:{
-  color: colors.background,
-  fontFamily: fonts.bold,
-  fontSize: 25,
+  buttonText: {
+    color: colors.background,
+    fontFamily: fonts.bold,
+    fontSize: 25,
 
-  textAlign: 'center',
-},
-haveAccountText: {
+    textAlign: "center",
+  },
+  haveAccountText: {
     fontFamily: fonts.regular,
     color: colors.white,
-    fontSize: 15
-},
+    fontSize: 15,
+  },
 
-loginText: {
+  loginText: {
     fontFamily: fonts.bold,
     color: colors.text,
     fontSize: 15,
     textAlign: "center",
-},
+  },
 
-haveAccountView:{
-    display: 'flex',
+  haveAccountView: {
+    display: "flex",
     marginTop: 20,
-    justifyContent: 'flex-start',
-    flexDirection:'row',
-    alignSelf: 'center',
-  }
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    alignSelf: "center",
+  },
 });

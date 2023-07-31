@@ -83,8 +83,6 @@ export default function AddReportScreen({navigation}) {
             {file != null ? <Image source={{uri: file.assets[0].uri}} style={{width: 100, height: 100}} ></Image> : <></>}
         </View>
     </View>
-
-
   );
 }
 
@@ -105,34 +103,35 @@ const styles = StyleSheet.create({
     gap: 20
   },
   header:{
+
     display: "flex",
     // paddingTop: 20,
-    justifyContent: 'space-evenly',
+    justifyContent: "space-evenly",
     flex: 1.6,
     paddingTop: 20,
     // backgroundColor: 'blue'
-},
-  forms:{
+  },
+  forms: {
     display: "flex",
     flex: 2.75,
-    width: '75%',
+    width: "75%",
     gap: 20,
     // justifyContent: 'center',
     // backgroundColor: 'red'
-  },  
+  },
 
-image: {
+  image: {
     height: Dimensions.get("window").width * 0.3,
     marginTop: 10,
-},
+  },
 
-Title: {
+  Title: {
     color: colors.white,
     fontSize: 35,
     textAlign: "center",
     fontFamily: fonts.bold,
-},
-Text: {
+  },
+  Text: {
     color: colors.white,
     fontFamily: fonts.bold,
     textAlign: 'left',
@@ -148,37 +147,38 @@ input: {
     height:50,
     // marginTop:500,
     paddingLeft: 17,
-},
+  },
 
-descriptionInput:{
+  descriptionInput: {
     backgroundColor: colors.white,
     borderRadius: 12,
     color: colors.background,
     fontFamily: fonts.bold,
     fontSize: 15,
     textAlign: "left",
-    height:150,
-    padding: 17,
-    textAlignVertical: 'top'
-},
+    height: 150,
+    paddingLeft: 17,
+    paddingTop: 17,
+    textAlignVertical: "top",
+  },
 
-button:{
+  button: {
     marginTop: 30,
     backgroundColor: colors.button,
     borderRadius: 20,
     height: 50,
-    display: 'flex',
+    display: "flex",
     justifyContent: "center",
-},
+  },
 
-buttonText:{
-  color: colors.background,
-  fontFamily: fonts.bold,
-  fontSize: 25,
+  buttonText: {
+    color: colors.background,
+    fontFamily: fonts.bold,
+    fontSize: 25,
 
-  textAlign: 'center',
-},
-evidenceLocation:{
+    textAlign: "center",
+  },
+  evidenceLocation: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -190,5 +190,5 @@ evidenceLocation:{
 },
 buttonView:{
     flex: 1,
-},
+  },
 });
