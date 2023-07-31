@@ -48,14 +48,14 @@ export default function DropDownMenu(){
 const styles = StyleSheet.create({
     dropdownStyle:{
         borderRadius: 8,
-        backgroundColor: colors.white,
+        backgroundColor: colors.white_bg,
         marginTop: -30,
     },
     rowTextStyle:{
 
     },
     buttonStyle:{
-        backgroundColor: colors.white,
+        backgroundColor: colors.white_bg,
         width: '100%',
         borderRadius: 12,
         // textAlign: 'left'
