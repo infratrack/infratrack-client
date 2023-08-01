@@ -11,16 +11,16 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextInput } from "react-native-gesture-handler";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import { handleLogin } from "./handleLogin";
 import { authContext } from "../utils/Context";
 
-export default function LoginScreen({navigation}) {
-  const [email, onChangeEmail] = useState('');
-  const [password, onChangePassword] = useState('');
+export default function LoginScreen({ navigation }) {
+  const [email, onChangeEmail] = useState("");
+  const [password, onChangePassword] = useState("");
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -46,7 +46,7 @@ export default function LoginScreen({navigation}) {
             autoComplete="email"
             value={email}
             onChangeText={onChangeEmail}
-            />
+          />
 
           <TextInput
             placeholder="senha"
@@ -55,12 +55,15 @@ export default function LoginScreen({navigation}) {
             secureTextEntry
             value={password}
             onChangeText={onChangePassword}
-            />
+          />
         </View>
 
         <Text style={styles.forgotPasswordText}>esqueci a senha</Text>
 
-        <TouchableOpacity onPress={() => handleLogin(email, password)} style={styles.enterButton}>
+        <TouchableOpacity
+          onPress={() => handleLogin(email, password)}
+          style={styles.enterButton}
+        >
           <Text style={styles.enterButtonText}>Entrar</Text>
         </TouchableOpacity>
 
@@ -78,7 +81,13 @@ export default function LoginScreen({navigation}) {
           />
         </View>
 
-        <TouchableOpacity style={styles.googleButton} onPress={async () => alert(await AsyncStorage.getItem('token'))} >
+        <TouchableOpacity
+          style={styles.googleButton}
+          onPress={
+            // async () => alert(await AsyncStorage.getItem('token'))
+            () => navigation.navigate("Map")
+          }
+        >
           <Image
             resizeMode="contain"
             source={require("../../assets/google.png")}
@@ -89,7 +98,12 @@ export default function LoginScreen({navigation}) {
 
         <View style={styles.dontHaveAccountContainer}>
           <Text style={styles.dontHaveAccountText}>não tem uma conta? </Text>
-          <Text style={styles.signUpText}>cadastre-se</Text>
+          <Text
+            style={styles.signUpText}
+            onPress={() => navigation.navigate("Register")}
+          >
+            cadastre-se
+          </Text>
         </View>
       </KeyboardAvoidingView>
     </View>
@@ -146,7 +160,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bold,
     backgroundColor: colors.white,
     borderRadius: 20,
-    color: colors.input,
+    color: colors.background,
     fontSize: 18,
     height: 50,
     marginTop: 15,

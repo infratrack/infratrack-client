@@ -98,7 +98,10 @@ export default function MapScreen({ navigation }) {
       >
         <TouchableOpacity
           style={styles.addReportButton}
-          onPress={() => navigation.navigate("AddReport")}
+          onPress={() => {
+            popOut();
+            navigation.navigate("AddReport");
+          }}
           disabled={!menuActive}
         >
           <Icon name="plus" size={25} color={colors.white} />

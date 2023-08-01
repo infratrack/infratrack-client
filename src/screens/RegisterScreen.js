@@ -10,62 +10,90 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextInput } from "react-native-gesture-handler";
 import axios from "axios";
-import {API_URL} from "@env"
-
+import { API_URL } from "@env";
 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
 async function handleCreateUser(name, email, password, navigation) {
-  console.log('Trying to create user')
-  await axios.post(`${API_URL}/user/create`, {
-    name,
-    email,
-    password
-  }).then((response) => {
-    console.log(response.data);
-    navigation.navigate('AddReport')
-  }).catch((error) => {
-    console.log(error);
-  })
+  console.log("Trying to create user");
+  await axios
+    .post(`${API_URL}/user/create`, {
+      name,
+      email,
+      password,
+    })
+    .then((response) => {
+      console.log(response.data);
+      navigation.navigate("AddReport");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
-
-export default function RegisterScreen({navigation}) {
-  const [name, onChangeName] = React.useState('');
-  const [email, onChangeEmail] = React.useState('');
-  const [password, onChangePassword] = React.useState('');
-  const [confirmPassword, onChangeConfirmPassword] = React.useState('');
+export default function RegisterScreen({ navigation }) {
+  const [name, onChangeName] = React.useState("");
+  const [email, onChangeEmail] = React.useState("");
+  const [password, onChangePassword] = React.useState("");
+  const [confirmPassword, onChangeConfirmPassword] = React.useState("");
 
   return (
     <View style={styles.container}>
-        <View style={styles.header}>
-            <Image
-            resizeMode="contain"
-            source={require("../../assets/logo.png")}
-            style={styles.image}
-            />
+      <View style={styles.header}>
+        <Image
+          resizeMode="contain"
+          source={require("../../assets/logo.png")}
+          style={styles.image}
+        />
 
-            <Text style={styles.newAccountText}>Nova Conta</Text>
+        <Text style={styles.newAccountText}>Nova Conta</Text>
+      </View>
 
-        </View>
+      <SafeAreaView style={styles.forms}>
+        <TextInput
+          value={name}
+          onChangeText={onChangeName}
+          placeholder="nome de usuário"
+          style={styles.input}
+          placeholderTextColor={colors.input}
+        />
 
-        <SafeAreaView style={styles.forms}>
+        <TextInput
+          value={email}
+          onChangeText={onChangeEmail}
+          placeholder="email"
+          style={styles.input}
+          placeholderTextColor={colors.input}
+        />
 
-            <TextInput value={name} onChangeText={onChangeName} placeholder="nome de usuário" style={styles.input} placeholderTextColor={colors.input} />
+        <TextInput
+          value={password}
+          onChangeText={onChangePassword}
+          secureTextEntry={true}
+          placeholder="senha"
+          style={styles.input}
+          placeholderTextColor={colors.input}
+        />
 
-            <TextInput value={email} onChangeText={onChangeEmail} placeholder="email" style={styles.input} placeholderTextColor={colors.input}  />
+        <TextInput
+          value={confirmPassword}
+          onChangeText={onChangeConfirmPassword}
+          secureTextEntry={true}
+          placeholder="confirmar a senha"
+          style={styles.input}
+          placeholderTextColor={colors.input}
+        />
 
-            <TextInput value={password} onChangeText={onChangePassword} secureTextEntry={true} placeholder="senha" style={styles.input} placeholderTextColor={colors.input}  />
-
-            <TextInput value={confirmPassword} onChangeText={onChangeConfirmPassword} secureTextEntry={true} placeholder="confirmar a senha"  style={styles.input} placeholderTextColor={colors.input}  />
-
-            <TouchableOpacity style={styles.button} onPress={() => 
-              // handleCreateUser(name, email, password, navigation)
-              navigation.navigate('AddReport')
-              }>
-                <Text style={styles.buttonText}>Cadastrar</Text>
-            </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() =>
+            // handleCreateUser(name, email, password, navigation)
+            navigation.navigate("AddReport")
+          }
+        >
+          <Text style={styles.buttonText}>Cadastrar</Text>
+        </TouchableOpacity>
 
         <View style={styles.haveAccountView}>
           <Text style={styles.haveAccountText}>já possui uma conta?</Text>
