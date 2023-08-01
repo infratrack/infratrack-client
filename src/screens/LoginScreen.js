@@ -21,8 +21,6 @@ import { authContext } from "../utils/Context";
 export default function LoginScreen({navigation}) {
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
-
-
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView

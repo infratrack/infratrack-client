@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   dropdownButtonText: {
     flex: 1,
     fontSize: 18,
-    color: '#000000',
+    // color: '#000000',
     textAlign: 'center',
     marginHorizontal: 8,
   },
@@ -48,6 +48,10 @@ const styles = StyleSheet.create({
   dropdownCustomizedRowParent: {
     flex: 1,
     overflow: 'hidden',
+    flexDirection: 'row',
+    gap: 20,
+    paddingHorizontal: 20,
+    // justifyContent: 'space-between',
   },
 });
 
