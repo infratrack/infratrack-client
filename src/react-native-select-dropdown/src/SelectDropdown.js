@@ -10,6 +10,7 @@ import DropdownWindow from './components/DropdownWindow';
 import {useSelectDropdown} from './hooks/useSelectDropdown';
 import {useLayoutDropdown} from './hooks/useLayoutDropdown';
 import {useRefs} from './hooks/useRefs';
+import colors from '../../styles/colors';
 
 const SelectDropdown = (
   {
@@ -212,7 +213,7 @@ const SelectDropdown = (
         <Text
           numberOfLines={1}
           allowFontScaling={false}
-          style={mergeStyles(styles.dropdownButtonText, buttonTextStyle)}>
+          style={mergeStyles(styles.dropdownButtonText, buttonTextStyle, {color: `${selectedItem ? colors.background : colors.input}`})}>
           {isExist(selectedItem)
             ? buttonTextAfterSelection
               ? buttonTextAfterSelection(selectedItem, selectedIndex)

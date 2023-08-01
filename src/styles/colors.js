@@ -4,4 +4,5 @@ export default {
   input: "#9FB5C8",
   text: "#A7CAF0",
   white: "#E8F1F2",
+  white_bg: "#FBF8F8"
 };
