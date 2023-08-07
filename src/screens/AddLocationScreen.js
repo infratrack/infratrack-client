@@ -9,13 +9,13 @@ import {
   View,
 } from "react-native";
 import * as Location from "expo-location";
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
 export default function AddLocationScreen({ navigation }) {
-  const [region, setRegion] = useState(null);
+  const [region, setRegion] = useState({});
 
   useEffect(() => {
     getRegion();
@@ -59,7 +59,29 @@ export default function AddLocationScreen({ navigation }) {
         </View>
       </View>
 
-      <MapView style={styles.map} region={region} />
+      <MapView style={styles.map} region={region}>
+        <Marker
+          coordinate={{
+            latitude: region.latitude,
+            longitude: region.longitude,
+          }}
+          draggable
+          onDragEnd={(e) => {
+            setRegion({
+              ...region,
+              latitude: e.nativeEvent.coordinate.latitude,
+              longitude: e.nativeEvent.coordinate.longitude,
+            });
+            console.log(region);
+          }}
+        >
+          <Image
+            resizeMode="contain"
+            source={require("../../assets/pin-bueiro.png")}
+            style={styles.pinImage}
+          />
+        </Marker>
+      </MapView>
 
       <TouchableOpacity
         onPress={() => navigation.goBack()}
@@ -146,5 +168,11 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+  },
+
+  pinImage: {
+    height: 60,
+    marginTop: 150,
+    resizeMode: "contain",
   },
 });
