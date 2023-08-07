@@ -100,7 +100,9 @@ export default function AddReportScreen({ navigation }) {
             //       item.base64
             //     )
             // )
-            navigation.navigate("AddLocation")
+            {
+              navigation.navigate("AddLocation", { problemType });
+            }
           }
         >
           <Image

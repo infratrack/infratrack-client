@@ -11,11 +11,33 @@ import {
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 
+import pinBueiro from "../../assets/pin-bueiro.png";
+import pinBuraco from "../../assets/pin-buraco.png";
+import pinConstrucao from "../../assets/pin-construcao.png";
+import pinEletrica from "../../assets/pin-eletrica.png";
+import pinEsgoto from "../../assets/pin-esgoto.png";
+import pinIluminacao from "../../assets/pin-iluminacao.png";
+import pinLixo from "../../assets/pin-lixo.png";
+import pinProblemasNaturais from "../../assets/pin-problemasNaturais.png";
+
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
-export default function AddLocationScreen({ navigation }) {
+export default function AddLocationScreen({ navigation, route }) {
   const [region, setRegion] = useState({});
+
+  const { problemType } = route.params;
+
+  const pinImages = {
+    "Problema de Energia": pinEletrica,
+    "Problema de iluminação": pinIluminacao,
+    Buraco: pinBuraco,
+    "Problemas naturais": pinProblemasNaturais,
+    Esgoto: pinEsgoto,
+    Lixo: pinLixo,
+    Bueiro: pinBueiro,
+    "Problema em Construções": pinConstrucao,
+  };
 
   useEffect(() => {
     getRegion();
@@ -77,7 +99,7 @@ export default function AddLocationScreen({ navigation }) {
         >
           <Image
             resizeMode="contain"
-            source={require("../../assets/pin-bueiro.png")}
+            source={pinImages[problemType]}
             style={styles.pinImage}
           />
         </Marker>
