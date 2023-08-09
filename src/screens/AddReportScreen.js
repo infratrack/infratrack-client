@@ -48,6 +48,7 @@ import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import DropDownMenu from "../components/DropDownMenu";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import getLocationAddress from "../utils/getLocationAddress";
 
 export default function AddReportScreen({ navigation }) {
   const [addLocationDisabled, setAddLocationDisabled] = useState(true);
@@ -57,6 +58,7 @@ export default function AddReportScreen({ navigation }) {
   const [reportTitle, setReportTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState(null);
+  const [locationAddress, setLocationAddress] = useState("");
 
   useEffect(() => {
     setAddLocationDisabled(problemType === null);
@@ -71,6 +73,30 @@ export default function AddReportScreen({ navigation }) {
         location === null
     );
   }, [problemType, reportTitle, description, file, location]);
+
+  useEffect(() => {
+    async function fetchData() {
+      if (location !== null) {
+        console.log(
+          "Location = " + location.latitude + "," + location.longitude
+        );
+
+        console.log(
+          "Recebido: " +
+            (await getLocationAddress(
+              location.latitude,
+              location.longitude,
+              35
+            ))
+        );
+        setLocationAddress(
+          await getLocationAddress(location.latitude, location.longitude, 35)
+        );
+      }
+    }
+
+    fetchData();
+  }, [location]);
 
   console.log(location);
 
@@ -134,7 +160,14 @@ export default function AddReportScreen({ navigation }) {
             source={LocationIcon}
             style={{ width: 20, height: 23 }}
           ></Image>
-          <Text style={styles.buttonText}>Adicionar localização</Text>
+          <Text
+            style={[
+              styles.buttonText,
+              locationAddress !== "" && { fontSize: 14 },
+            ]}
+          >
+            {locationAddress === "" ? "Adicionar localização" : locationAddress}
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
