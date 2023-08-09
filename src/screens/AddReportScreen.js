@@ -77,18 +77,6 @@ export default function AddReportScreen({ navigation }) {
   useEffect(() => {
     async function fetchData() {
       if (location !== null) {
-        console.log(
-          "Location = " + location.latitude + "," + location.longitude
-        );
-
-        console.log(
-          "Recebido: " +
-            (await getLocationAddress(
-              location.latitude,
-              location.longitude,
-              35
-            ))
-        );
         setLocationAddress(
           await getLocationAddress(location.latitude, location.longitude, 35)
         );
