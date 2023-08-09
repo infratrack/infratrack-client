@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dimensions,
   Image,
@@ -50,11 +50,29 @@ import DropDownMenu from "../components/DropDownMenu";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function AddReportScreen({ navigation }) {
+  const [addLocationDisabled, setAddLocationDisabled] = useState(true);
+  const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
   const [file, setFile] = useState([]);
-  const [problemType, setProblemType] = useState();
-  const [reportTitle, setReportTitle] = useState();
-  const [description, setDescription] = useState();
-  const [location, setLocation] = useState();
+  const [problemType, setProblemType] = useState(null);
+  const [reportTitle, setReportTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState(null);
+
+  useEffect(() => {
+    setAddLocationDisabled(problemType === null);
+  }, [problemType]);
+
+  useEffect(() => {
+    setSaveButtonDisabled(
+      problemType === null ||
+        reportTitle === "" ||
+        description === "" ||
+        !file.length ||
+        location === null
+    );
+  }, [problemType, reportTitle, description, file, location]);
+
+  console.log(location);
 
   return (
     <View style={styles.container}>
@@ -91,7 +109,11 @@ export default function AddReportScreen({ navigation }) {
 
         {/* TODO: Change this to user id value */}
         <TouchableOpacity
-          style={styles.button}
+          disabled={addLocationDisabled}
+          style={[
+            styles.addLocationButton,
+            addLocationDisabled && { opacity: 0.5 },
+          ]}
           onPress={() =>
             // file.map(
             //   async (item) =>
@@ -101,7 +123,10 @@ export default function AddReportScreen({ navigation }) {
             //     )
             // )
             {
-              navigation.navigate("AddLocation", { problemType });
+              navigation.navigate("AddLocation", {
+                problemType,
+                setLocation: (location) => setLocation(location),
+              });
             }
           }
         >
@@ -113,7 +138,8 @@ export default function AddReportScreen({ navigation }) {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.sendButton}
+          disabled={saveButtonDisabled}
+          style={[styles.sendButton, saveButtonDisabled && { opacity: 0.5 }]}
           onPress={() => navigation.navigate("Map")}
         >
           <Text style={styles.archiveText}>Salvar</Text>
@@ -159,6 +185,7 @@ const styles = StyleSheet.create({
     flex: 2.5,
     width: "75%",
     gap: 20,
+    marginBottom: 100,
     // justifyContent: 'center',
     // backgroundColor: 'red'
   },
@@ -207,9 +234,9 @@ const styles = StyleSheet.create({
     textAlignVertical: "top",
   },
 
-  button: {
+  addLocationButton: {
     marginTop: 30,
-    backgroundColor: colors.white_bg,
+    backgroundColor: colors.white,
     borderRadius: 20,
     height: 50,
     display: "flex",

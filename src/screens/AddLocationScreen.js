@@ -106,7 +106,10 @@ export default function AddLocationScreen({ navigation, route }) {
       </MapView>
 
       <TouchableOpacity
-        onPress={() => navigation.goBack()}
+        onPress={() => {
+          route.params.setLocation(region);
+          navigation.goBack();
+        }}
         style={styles.confirmButton}
       >
         <Text style={styles.confirmText}>Confirmar</Text>
