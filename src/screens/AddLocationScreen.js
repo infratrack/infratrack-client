@@ -11,6 +11,8 @@ import {
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 
+import getLocationAddress from "../utils/getLocationAddress";
+
 import pinBueiro from "../../assets/pin-bueiro.png";
 import pinBuraco from "../../assets/pin-buraco.png";
 import pinConstrucao from "../../assets/pin-construcao.png";
@@ -24,6 +26,7 @@ import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
 export default function AddLocationScreen({ navigation, route }) {
+  const [locationAddress, setLocationAddress] = useState("");
   const [region, setRegion] = useState({});
 
   const { problemType } = route.params;
@@ -42,6 +45,20 @@ export default function AddLocationScreen({ navigation, route }) {
   useEffect(() => {
     getRegion();
   }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      if (region !== null) {
+        setLocationAddress(
+          await getLocationAddress(region.latitude, region.longitude, 31)
+        );
+      }
+    }
+
+    fetchData();
+
+    console.log("Depois do fetch data: " + locationAddress);
+  }, [region]);
 
   async function getRegion() {
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -77,6 +94,8 @@ export default function AddLocationScreen({ navigation, route }) {
             placeholderTextColor={colors.input}
             style={styles.locationInput}
             autoComplete="street-address"
+            value={locationAddress}
+            readOnly
           />
         </View>
       </View>
